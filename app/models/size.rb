@@ -1,2 +1,3 @@
 class Size < ApplicationRecord
 end
+

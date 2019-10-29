@@ -3,3 +3,4 @@ FactoryBot.define do
     size_name { "MyString" }
   end
 end
+

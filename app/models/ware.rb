@@ -1,2 +1,3 @@
 class Ware < ApplicationRecord
 end
+

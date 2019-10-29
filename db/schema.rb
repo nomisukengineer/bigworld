@@ -61,3 +61,4 @@ ActiveRecord::Schema.define(version: 20191029080513) do
   add_foreign_key "wares", "products"
   add_foreign_key "wares", "sizes"
 end
+

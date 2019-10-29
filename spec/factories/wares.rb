@@ -5,3 +5,4 @@ FactoryBot.define do
     amount { "MyString" }
   end
 end
+
