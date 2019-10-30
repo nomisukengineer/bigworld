@@ -11,26 +11,33 @@ User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password_digest:              "foobar",
              birthday: "1996-12-15",
+             postcode: "104-0061",
+             address: "東京都中央区銀座６丁目10",
              creditcard: "123456789",
              creditpass: "123"
              )
 
-999999.times do |n|
+99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password_digest = "password"
   birthday = Faker::Time.between(40.years.ago, 18.years.ago, :all).to_s[0, 10]
+  postcode = Faker::Address.postcode
+  address = Faker::Address.full_address
   creditcard = Faker::Business.credit_card_number
   creditpass = "456"
   User.create!(name:  name,
                email: email,
                password_digest:   password_digest,
                birthday: birthday,
+               postcode: postcode,
+               address: address,
                creditcard: creditcard,
                creditpass: creditpass
                )
 end
 =end
+
 
 Product.create!(product_name:  "例えばTシャツ",
                 gender_id: "1",
@@ -39,10 +46,10 @@ Product.create!(product_name:  "例えばTシャツ",
                 picture: "User/naohiro-nomi/picture/image.jpg"
             )
 
-999999.times do |n|
+99.times do |n|
     product_name  = Faker::Name.name
     gender_id = Faker::Number.between(from =1, to = 2)
-    category_id = Faker::Number.between(from =1, to = 10)
+    category_id = Faker::Number.between(from =1, to = 8)
     price = Faker::Commerce.price(range = 1000..10000.0, as_string = false)
     picture = Faker::Internet.url
     Product.create!(product_name:  product_name,

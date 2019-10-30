@@ -1,0 +1,20 @@
+<% provide(:title, '商品一覧') %>
+<h1>bigworld</h1>
+
+<%= will_paginate %>
+
+<ul class="products">
+  <% @products.each do |product| %>
+    <table>
+        <tr>
+        <th>
+        <%= link_to product.product_name, product %>
+        <tr>
+        <td>ジャンル <%= product.category_id %></td>
+        </tr>
+    </table>
+    ---------------------------------------------------
+  <% end %>
+</ul>
+
+<%= will_paginate %>

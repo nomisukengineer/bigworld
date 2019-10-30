@@ -1,0 +1,59 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_title">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section class="user_info">
+      <table>
+        <tr>
+            <th>ユーザー名　
+            <td>
+                <%= @user.name %>
+            </td>
+            </th>
+        </tr>
+        <tr>
+            <th>メールアドレス　
+            <td>
+                <%= @user.email %>
+            </td>
+            </th>
+        </tr>
+        <tr>
+          <th>生年月日
+            <td>
+                <%= @user.birthday %>
+            </td>
+          </th>
+        </tr>
+        <tr>
+          <th>郵便番号
+            <td>
+                <%= @user.postcode %>
+            </td>
+          </th>
+        </tr>
+        <tr>
+          <th>住所
+            <td>
+                <%= @user.address %>
+            </td>
+          </th>
+        </tr>
+        <tr>
+          <th>クレジットカード番号
+            <td>
+                <%= @user.creditcard %>
+            </td>
+          </th>
+        </tr>
+      </table>
+    </section>
+  </aside>
+</div>
+
+
