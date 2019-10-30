@@ -1,0 +1,44 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages_users', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.label :birthday, "生年月日" %>
+      <%= f.text_field :birthday, class: 'form-control' %>
+
+      <%= f.label :postcode, "郵便番号" %>
+      <%= f.text_field :postcode, class: 'form-control' %>
+
+      <%= f.label :address, "ご住所(お届け先)" %>
+      <%= f.text_field :address, class: 'form-control' %>
+
+      <%= f.label :creditcard, "クレジットカード番号" %>
+      <%= f.text_field :creditcard, class: 'form-control' %>
+
+      <%= f.label :creditpass, "暗証番号" %>
+      <%= f.text_field :creditpass, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">change</a>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+<h1>マイページ</h1>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_title">
@@ -7,52 +8,55 @@
         <%= @user.name %>
       </h1>
     </section>
-    <section class="user_info">
-      <table>
-        <tr>
-            <th>ユーザー名　
-            <td>
-                <%= @user.name %>
-            </td>
+    <center>
+      <section class="user_info">
+        <table>
+          <tr>
+              <th>ユーザー名　
+              <td>
+                  <%= @user.name %>
+              </td>
+              </th>
+          </tr>
+          <tr>
+              <th>メールアドレス　
+              <td>
+                  <%= @user.email %>
+              </td>
+              </th>
+          </tr>
+          <tr>
+            <th>生年月日
+              <td>
+                  <%= @user.birthday %>
+              </td>
             </th>
-        </tr>
-        <tr>
-            <th>メールアドレス　
-            <td>
-                <%= @user.email %>
-            </td>
+          </tr>
+          <tr>
+            <th>郵便番号
+              <td>
+                  <%= @user.postcode %>
+              </td>
             </th>
-        </tr>
-        <tr>
-          <th>生年月日
-            <td>
-                <%= @user.birthday %>
-            </td>
-          </th>
-        </tr>
-        <tr>
-          <th>郵便番号
-            <td>
-                <%= @user.postcode %>
-            </td>
-          </th>
-        </tr>
-        <tr>
-          <th>住所
-            <td>
-                <%= @user.address %>
-            </td>
-          </th>
-        </tr>
-        <tr>
-          <th>クレジットカード番号
-            <td>
-                <%= @user.creditcard %>
-            </td>
-          </th>
-        </tr>
-      </table>
-    </section>
+          </tr>
+          <tr>
+            <th>住所
+              <td>
+                  <%= @user.address %>
+              </td>
+            </th>
+          </tr>
+          <tr>
+            <th>クレジットカード番号
+              <td>
+                  <%= @user.creditcard %>
+              </td>
+            </th>
+          </tr>
+        </table>
+      </section>
+      <%= link_to "変更", "/users/#{@user.id}/edit", class: 'btn btn-default' %>
+    </center>
   </aside>
 </div>
 
