@@ -12,10 +12,29 @@
 
 ActiveRecord::Schema.define(version: 20191030015048) do
 
+  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "ware_id"
+    t.string "carts_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["ware_id"], name: "index_carts_on_ware_id"
+  end
+
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "reaction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reaction_id"], name: "index_favorites_on_reaction_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "genders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -24,17 +43,25 @@ ActiveRecord::Schema.define(version: 20191030015048) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "product_name"
     t.bigint "gender_id"
     t.bigint "category_id"
-    t.string "price"
+    t.decimal "price", precision: 10
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "category_index"
-    t.index ["gender_id"], name: "gender_index"
-    t.index ["product_name"], name: "product_name_index"
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["gender_id"], name: "index_products_on_gender_id"
   end
 
   create_table "reactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,15 +97,6 @@ ActiveRecord::Schema.define(version: 20191030015048) do
     t.string "address"
   end
 
-  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "reaction_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["reaction_id"], name: "index_favorites_on_reaction_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
-  end
-
   create_table "wares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "product_id"
     t.bigint "size_id"
@@ -89,34 +107,13 @@ ActiveRecord::Schema.define(version: 20191030015048) do
     t.index ["size_id"], name: "index_wares_on_size_id"
   end
 
-  create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "ware_id"
-    t.string "carts_count"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
-    t.index ["ware_id"], name: "index_carts_on_ware_id"
-  end
-
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "cart_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
+  add_foreign_key "favorites", "reactions"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "genders"
   add_foreign_key "reactions", "products"
-  add_foreign_key "favorites", "reactions"
-  add_foreign_key "favorites", "users"
   add_foreign_key "wares", "products"
   add_foreign_key "wares", "sizes"
-  add_foreign_key "carts", "users"
-  add_foreign_key "carts", "wares"
-  add_foreign_key "orders", "carts"
-  add_foreign_key "orders", "users"
 end

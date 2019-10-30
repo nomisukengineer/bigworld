@@ -9,7 +9,8 @@
 =begin
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
-             password_digest:              "foobar",
+             password:              "foobar",
+             password_confirmation: "foobar",
              birthday: "1996-12-15",
              postcode: "104-0061",
              address: "東京都中央区銀座６丁目10",
@@ -20,7 +21,8 @@ User.create!(name:  "Example User",
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
-  password_digest = "password"
+  password = "password"
+  password_confirmation = "password"
   birthday = Faker::Time.between(40.years.ago, 18.years.ago, :all).to_s[0, 10]
   postcode = Faker::Address.postcode
   address = Faker::Address.full_address
@@ -28,7 +30,8 @@ User.create!(name:  "Example User",
   creditpass = "456"
   User.create!(name:  name,
                email: email,
-               password_digest:   password_digest,
+               password:   password,
+               password_confirmation: password_confirmation,
                birthday: birthday,
                postcode: postcode,
                address: address,
@@ -37,6 +40,21 @@ User.create!(name:  "Example User",
                )
 end
 =end
+
+=begin
+Gender.create!(gender_name:  "Men")
+Gender.create!(gender_name:  "Wemen")
+=end
+
+Category.create!(category_name:  "コート")
+Category.create!(category_name:  "ジャンパー")
+Category.create!(category_name:  "パーカー")
+Category.create!(category_name:  "シャツ")
+Category.create!(category_name:  "Tシャツ")
+Category.create!(category_name:  "半ズボン")
+Category.create!(category_name:  "長ズボン")
+Category.create!(category_name:  "スカート")
+Category.create!(category_name:  "ワンピース")
 
 
 Product.create!(product_name:  "例えばTシャツ",
@@ -59,3 +77,4 @@ Product.create!(product_name:  "例えばTシャツ",
         picture: picture,
         )
 end
+

@@ -192,4 +192,25 @@ input {
 }
 
 /* Users index */
+main{
+  display: flex;
+  min-height: 100vh;
+  margin: 10px 0 10px 0;
+  right: 0px;
+}
+.content-area{
+  padding: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
+.content{
+
+  display: inline-block;      /* インラインブロック要素にする */
+  background-color:  #ccc;    /* 背景色指定 */
+  padding:  2.5%;             /* 余白指定 */
+  height: 100px;              /* 高さ指定 */
+  width: 32.333%;            /* 幅指定 */
+  margin-bottom: 10px;        /* 要素同士の隙間調整 */
+}

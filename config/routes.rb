@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'products#index'
   get 'products/new'
 
   get 'products/index'
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
-  root 'static_pages#home'
+
   get 'users/new'
 
   get 'static_pages/home'

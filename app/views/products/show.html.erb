@@ -1,0 +1,27 @@
+<% provide(:title, '詳細') %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="detail_info">
+      <h1>
+        <%= @product.product_name %>
+      </h1>
+      <table>
+        <tr>
+        <th><%= @product.category.category_name %></th>
+        <tr>
+            <th><%= @product.gender.gender_name %>
+            <td>
+            </td>
+            </th>
+        </tr>
+        <tr>
+            <td>価格</td>　
+            <td> ¥<%= @product.price %>
+
+            </td>
+            </th>
+        </tr>
+      </table>
+    </section>
+  </aside>
+</div>

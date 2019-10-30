@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.paginate(page: params[:page])
-    @category = Category.joins(:products).where(products: { id: 2})
+
   end
 
 

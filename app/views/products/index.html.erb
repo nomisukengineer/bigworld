@@ -4,20 +4,24 @@
 <%= will_paginate %>
 
 
+<main>
+<div class="content-area">
 
-<ul class="products">
   <% @products.each do |product| %>
-    <table>
-    <tr>
-        <th>
-        <%= link_to product.product_name, product %>
-    <tr>
-        <td>ジャンル <%= @category %></td>
-    </tr>
-    </table>
-    ---------------------------------------------------
+    <div class="content">
+      <table>
+        <tr>
+            <th>
+            <%= link_to product.product_name, product %>
+        <tr>
+            <td>ジャンル <%= product.category.category_name %></td>
+        <tr>
+            <td>￥<%= product.price %></td>
+        </tr>
+      </table>
+    </div>
   <% end %>
-</ul>
+ </div>
 
-
+</main>
 <%= will_paginate %>
