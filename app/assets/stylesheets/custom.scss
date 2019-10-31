@@ -213,6 +213,7 @@ main{
   height: 13%;              /* 高さ指定 */
   width: 25%;            /* 幅指定 */
   margin-bottom: 10px;        /* 要素同士の隙間調整 */
+  vertical-align: middle;
 }
 
 .content img{
@@ -220,10 +221,18 @@ main{
 }
 
 
-/* Users detail */
-/*.inline-block_detail{/*
-  display: inline-block; /*     /* インラインブロック要素にする */
-/*  background-color:  white;/*    /* 背景色指定 */
-/*  padding:  2.5%;            /* /* 余白指定 */
-/*  height: 100px;              /* /* 高さ指定 */
-/*  vertical-align:  top;   /*  /* 要素を上下中央揃えにする */
+ /* Users detail */
+.detail-info{
+  background: #FFF;
+  height: 600px;
+  overflow: hidden;
+}
+
+.product-detail-picture{
+  float: left;
+  margin-right: 10px;
+}
+
+.product-detail-content{
+  float: 2;
+}

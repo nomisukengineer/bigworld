@@ -80,15 +80,15 @@ Product.create!(product_name:  "例えばTシャツ",
 end
 =end
 
-=begin
+
 Size.create!(size_name:  "XL")
 Size.create!(size_name:  "2XL")
 Size.create!(size_name:  "3XL")
 Size.create!(size_name:  "4XL")
 Size.create!(size_name:  "5XL")
-=end
 
-=begin
+
+
 Ware.create!(product_id:  "1",
             size_id: "1",
             amount:   5,
@@ -103,7 +103,7 @@ Ware.create!(product_id:  "1",
         amount:   amount,
         )
 end
-=end
+
 
 Cart.create!(user_id: "1",
             ware_id: "1",

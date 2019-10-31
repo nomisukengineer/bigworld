@@ -1,36 +1,38 @@
 <% provide(:title, '詳細') %>
 <div class="row">
-  <aside class="col-md-4">
-    <section class="detail_info">
-      <div class="inline-block_detail">
+  <section class="detail_info">
+      <div class="product-detail-picture">
         <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
       </div>
-      <span class="inline-block_detail">
+      <span class="product-detail-content">
 
-      <h1>
-        <%= @product.product_name %>
-      </h1>
-      <table>
-        <tr>
-        <th><%= @product.category.category_name %></th>
-        <tr>
-            <th><%= @product.gender.gender_name %>
-            <td>
-            </td>
-            </th>
-        </tr>
-        <tr>
-            <td>価格</td>　
-            <td> ¥<%= @product.price %>
+        <h1>
+          <%= @product.product_name %>
+        </h1>
+        <table>
+          <tr>
+          <th><%= @product.category.category_name %></th>
+          <tr>
+              <th><%= @product.gender.gender_name %>
+              <td>
+              </td>
+              </th>
+          </tr>
+          <tr>
+              <td>価格</td>　
+              <td> ¥<%= @product.price %>
 
-            </td>
-            </th>
-        </tr>
-      </table>
+              </td>
+              </th>
+          </tr>
+        </table>
+
+      <div class="product-size">
+        <h3>Size</h3>
+        <% @size_ids.each do |size_id| %>
+          <%= Size.find(size_id).size_name %>
+        <% end %>
+      </div>
     </span>
-    </section>
-    <section class="size-stock">
-
-    </section>
-  </aside>
+  </section>
 </div>
