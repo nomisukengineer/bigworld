@@ -3,15 +3,17 @@ class User < ApplicationRecord
     before_save { self.email = email.downcase }
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, length: { maximum: 255 },
+    validates :email, presence: true, length: { maximum: 50 },
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: { case_sensitive: false }
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }
-    validates :birthday, presence: true
+    VALID_BIRTHDAY_REGEX = /\A\d{4}-\d{1,2}-\d{1,2}\z/
+    validates :birthday, presence: true, format: { with: VALID_BIRTHDAY_REGEX }
     validates :postcode, presence: true
     validates :address, presence: true
-    validates :creditcard, presence: true
+    validates :creditcard, presence: true, length: { maximum: 20 }
+    validates :creditpass, presence: true, length: { maximum: 3 }, length: { minimum: 3 }
 
     # 渡された文字列のハッシュ値を返す
     def self.digest(string)
