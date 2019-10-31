@@ -8,7 +8,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.paginate(page: params[:page])
+  end
 
+  def show_size
+    @feed 
   end
 
 

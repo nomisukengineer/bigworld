@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'carts/new'
+
   root 'products#index'
   get 'products/new'
 

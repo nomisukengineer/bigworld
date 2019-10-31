@@ -9,10 +9,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -26,10 +26,10 @@ RSpec.describe User, type: :model do
                 name: nil,
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
             )
             user.valid?
@@ -42,10 +42,10 @@ RSpec.describe User, type: :model do
                 name: "a"*49,
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
                 )
             expect(user).to be_valid
@@ -56,10 +56,10 @@ RSpec.describe User, type: :model do
                 name: "a"*50,
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
                 )
             expect(user).to be_valid
@@ -70,10 +70,10 @@ RSpec.describe User, type: :model do
                 name: "a"*51,
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
                 )
             user.valid?
@@ -86,10 +86,10 @@ RSpec.describe User, type: :model do
             name: "のみすけ",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -100,10 +100,10 @@ RSpec.describe User, type: :model do
             name: "ﾉﾐｽｹ",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -114,10 +114,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -132,10 +132,10 @@ RSpec.describe User, type: :model do
                 name: "nomisuke",
                 email: nil,
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
             )
             user.valid?
@@ -148,10 +148,10 @@ RSpec.describe User, type: :model do
             name: "nomitakeshi",
             email: "a"*255,
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to_not be_valid
@@ -164,10 +164,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
 
@@ -175,10 +175,10 @@ RSpec.describe User, type: :model do
             name: "nomitakeshi",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -193,29 +193,46 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: nil,
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
             expect(user.errors[:password]).to include("can't be blank")
         end
 
+=begin
         it "is invalid when password is 5 characters" do
             user = User.new(
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "passw",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
             expect(user).to_not be_valid
+        end
+=end
+
+        it "is valid when password is 5 characters" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "passwo",
+            postcode: "1234567",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "1996-12-15",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            user.valid?
+            expect(user).to be_valid
         end
 
         it "is valid when password is 6 characters" do
@@ -223,10 +240,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "passwo",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -238,10 +255,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "passwor",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -251,15 +268,15 @@ RSpec.describe User, type: :model do
 
     describe "生年月日" do
         #生年月日がなくても有効な状態であること
-        it "is valid with a first name, last name, email, password, postdode, address, creditcard, creditpass" do
+        it "is invalid without birthday" do
             user = User.new(
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: nil,
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -272,10 +289,25 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996/12/156",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            user.valid?
+            expect(user).to_not be_valid
+        end
+
+        it "is invalid with 数字以外" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "password",
+            postcode: "1234567",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "千九百九十六年",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -293,11 +325,42 @@ RSpec.describe User, type: :model do
             postcode: nil,
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
-            expect(user.errors[:postcode]).to include("can't be blank")
+            expect(user).to_not be_valid
+        end
+
+
+        it "is invalid with 7 characters" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "password",
+            postcode: "1234567",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "1996-12-15",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            expect(user).to be_valid
+        end
+
+        #郵便番号がなければ無効な状態であること
+        it "is valid with a first name, last name, email, password, postdode, address, creditcard, creditpass" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "password",
+            postcode: "一二三四五六",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "1996-12-15",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            user.valid?
+            expect(user.errors[:postcode]).to include("is not a number")
         end
     end
 
@@ -308,10 +371,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: nil,
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             user.valid?
@@ -324,10 +387,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "a"*254,
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -338,10 +401,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "a"*255,
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -373,7 +436,7 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
             creditcard: nil,
@@ -389,10 +452,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
-            birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-345",
+            birthday: "19961215",
+            creditcard: "123456789012345",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -403,10 +466,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: "123"
             )
             expect(user).to be_valid
@@ -419,10 +482,10 @@ RSpec.describe User, type: :model do
             name: "nomisuke",
             email: "nomi@gmail.com",
             password: "password",
-            postcode: "123-4567",
+            postcode: "1234567",
             address: "東京都中央区銀座6丁目10",
             birthday: "1996-12-15",
-            creditcard: "1234-5678-9012-3456",
+            creditcard: "1234567890123456",
             creditpass: nil
             )
             user.valid?
@@ -430,33 +493,50 @@ RSpec.describe User, type: :model do
         end
         
         # 暗証番号は3けた
+
         it "is invalid with 2 characters " do
             user = User.new(
                 name: "nomisuke",
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "12"
             )
             user.valid?
             expect(user).to_not be_valid
         end
 
+
         it "is valid with 3 characters " do
             user = User.new(
                 name: "nomisuke",
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
-                creditcard: "1234-5678-9012-3456",
+                creditcard: "1234567890123456",
                 creditpass: "123"
             )
             expect(user).to be_valid
+        end
+
+        it "is valid with 数字以外 " do
+            user = User.new(
+                name: "nomisuke",
+                email: "nomi@gmail.com",
+                password: "password",
+                postcode: "1234567",
+                address: "東京都中央区銀座6丁目10",
+                birthday: "1996-12-15",
+                creditcard: "1234567890123456",
+                creditpass: "一二さん"
+            )
+            user.valid?
+            expect(user).to_not be_valid
         end
     end
 
@@ -467,7 +547,7 @@ RSpec.describe User, type: :model do
                 name: "nomisuke",
                 email: "nomi@gmail.com",
                 password: "password",
-                postcode: "123-4567",
+                postcode: "1234567",
                 address: "東京都中央区銀座6丁目10",
                 birthday: "1996-12-15",
                 creditcard: "1234-5678-9012-3456",

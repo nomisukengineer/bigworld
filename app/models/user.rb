@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :carts
     attr_accessor :remember_token
     before_save { self.email = email.downcase }
     validates :name, presence: true, length: { maximum: 50 }
@@ -7,13 +8,13 @@ class User < ApplicationRecord
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: { case_sensitive: false }
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :password, presence: true, length: { minimum: 6 }, length: { maximum: 20 }
     VALID_BIRTHDAY_REGEX = /\A\d{4}-\d{1,2}-\d{1,2}\z/
     validates :birthday, presence: true, format: { with: VALID_BIRTHDAY_REGEX }
-    validates :postcode, presence: true
+    validates :postcode, presence: true, numericality: true
     validates :address, presence: true
-    validates :creditcard, presence: true, length: { maximum: 20 }
-    validates :creditpass, presence: true, length: { maximum: 3 }, length: { minimum: 3 }
+    validates :creditcard, presence: true, length: { maximum: 20 }, numericality: true
+    validates :creditpass, presence: true, length: { is: 3 }, numericality: true
 
     # 渡された文字列のハッシュ値を返す
     def self.digest(string)

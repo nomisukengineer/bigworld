@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 =begin
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
@@ -39,12 +40,12 @@ User.create!(name:  "Example User",
                creditpass: creditpass
                )
 end
-=end
 
-=begin
+
+
 Gender.create!(gender_name:  "Men")
 Gender.create!(gender_name:  "Wemen")
-=end
+
 
 Category.create!(category_name:  "コート")
 Category.create!(category_name:  "ジャンパー")
@@ -77,4 +78,34 @@ Product.create!(product_name:  "例えばTシャツ",
         picture: picture,
         )
 end
+=end
 
+=begin
+Size.create!(size_name:  "XL")
+Size.create!(size_name:  "2XL")
+Size.create!(size_name:  "3XL")
+Size.create!(size_name:  "4XL")
+Size.create!(size_name:  "5XL")
+=end
+
+=begin
+Ware.create!(product_id:  "1",
+            size_id: "1",
+            amount:   5,
+            )
+
+99.times do |n|
+    product_id  = Faker::Number.between(from =1, to = 10)
+    size_id = Faker::Number.between(from =1, to = 5)
+    amount = Faker::Number.between(from =1, to = 10)
+    Ware.create!(product_id:  product_id,
+        size_id: size_id,
+        amount:   amount,
+        )
+end
+=end
+
+Cart.create!(user_id: "1",
+            ware_id: "1",
+            carts_count: "2"
+            )

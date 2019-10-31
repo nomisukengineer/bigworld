@@ -210,7 +210,20 @@ main{
   display: inline-block;      /* インラインブロック要素にする */
   background-color:  #ccc;    /* 背景色指定 */
   padding:  2.5%;             /* 余白指定 */
-  height: 100px;              /* 高さ指定 */
-  width: 32.333%;            /* 幅指定 */
+  height: 13%;              /* 高さ指定 */
+  width: 25%;            /* 幅指定 */
   margin-bottom: 10px;        /* 要素同士の隙間調整 */
 }
+
+.content img{
+  width: 110%;
+}
+
+
+/* Users detail */
+/*.inline-block_detail{/*
+  display: inline-block; /*     /* インラインブロック要素にする */
+/*  background-color:  white;/*    /* 背景色指定 */
+/*  padding:  2.5%;            /* /* 余白指定 */
+/*  height: 100px;              /* /* 高さ指定 */
+/*  vertical-align:  top;   /*  /* 要素を上下中央揃えにする */
