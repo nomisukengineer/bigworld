@@ -1,0 +1,52 @@
+<% provide(:title, '買い物カゴ一覧') %>
+<h1>購入手続き</h1>
+
+<div class="buy-button">
+
+</div>
+<main>
+<div class="content-area">
+    <% @carts.each do |cart| %>
+        <div class="content">
+        <table>
+        <tr
+        <th>
+            <%= cart.ware.product.product_name %>
+        <tr>
+            <td>ジャンル　<%= cart.ware.product.category.category_name %></td>
+        <tr>
+            <td>サイズ　<%= cart.ware.size.size_name %></td>
+        <tr>
+            <td>¥<%= cart.ware.product.price %></td>
+        <tr>
+            <td><%= cart.cart_count %></td>
+        </table>
+        </div>
+    <% end %>
+</div>
+<div class="confirm">
+    <div class="address">
+        <p>お届け先は</p>
+        <p><%= @user.address %>、</p>
+        <p>クレジットカード番号は、</p>
+        <p><%= @user.creditcard %></p>
+        <p>です。
+        変更しますか？</p>
+        <%= link_to "変更する", "/users/#{@user.id}/edit", class: 'btn btn-default' %>
+    </div>
+
+    <div class="creditpass">
+    <p>購入する場合</p>
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages_users', object: f.object %>
+
+        <%= f.label :creditpass, "クレジットカードの暗証番号" %>
+        <%= f.text_field :creditpass, class: 'form-control' %>
+
+        <%= f.submit "購入する", class: "btn btn-primary" %>
+    <% end %>
+    </div>
+</div>
+</main>
+
+

@@ -211,7 +211,7 @@ main{
   background-color:  #ccc;    /* 背景色指定 */
   padding:  2.5%;             /* 余白指定 */
   height: 13%;              /* 高さ指定 */
-  width: 25%;            /* 幅指定 */
+  width: 250px;            /* 幅指定 */
   margin-bottom: 10px;        /* 要素同士の隙間調整 */
   vertical-align: middle;
 }
@@ -231,8 +231,4 @@ main{
 .product-detail-picture{
   float: left;
   margin-right: 10px;
-}
-
-.product-detail-content{
-  float: 2;
 }

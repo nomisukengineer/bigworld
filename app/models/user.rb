@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :carts
+    has_many :orders
     attr_accessor :remember_token
     before_save { self.email = email.downcase }
     validates :name, presence: true, length: { maximum: 50 }
@@ -8,7 +9,7 @@ class User < ApplicationRecord
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: { case_sensitive: false }
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }, length: { maximum: 20 }
+    validates :password, presence: true, length: { minimum: 6 }
     VALID_BIRTHDAY_REGEX = /\A\d{4}-\d{1,2}-\d{1,2}\z/
     validates :birthday, presence: true, format: { with: VALID_BIRTHDAY_REGEX }
     validates :postcode, presence: true, numericality: true

@@ -1,0 +1,32 @@
+<% provide(:title, '買い物カゴ一覧') %>
+<h1>買い物カゴ一覧</h1>
+
+<div class="buy-button">
+
+<%= link_to "購入", "orders", class: 'btn btn-default' %>
+</div>
+<main>
+<div class="content-area">
+    <% @carts.each do |cart| %>
+        <div class="content">
+        <table>
+        <tr>
+        <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
+        <th>
+            <%= cart.ware.product.product_name %>
+        <tr>
+            <td>ジャンル　<%= cart.ware.product.category.category_name %></td>
+        <tr>
+            <td>サイズ　<%= cart.ware.size.size_name %></td>
+        <tr>
+            <td>¥<%= cart.ware.product.price %></td>
+        <tr>
+            <td><%= cart.cart_count %></td>
+        </table>
+        </div>
+    <% end %>
+</div>
+</main>
+
+
+

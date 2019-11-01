@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20191030015048) do
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "ware_id"
-    t.string "carts_count"
+    t.string "cart_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -45,11 +45,12 @@ ActiveRecord::Schema.define(version: 20191030015048) do
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
-    t.bigint "cart_id"
+    t.bigint "ware_id"
+    t.string "order_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["ware_id"], name: "index_orders_on_ware_id"
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -109,8 +110,8 @@ ActiveRecord::Schema.define(version: 20191030015048) do
 
   add_foreign_key "favorites", "reactions"
   add_foreign_key "favorites", "users"
-  add_foreign_key "orders", "carts"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "wares"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "genders"
   add_foreign_key "reactions", "products"

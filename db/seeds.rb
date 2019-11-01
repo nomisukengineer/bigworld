@@ -13,7 +13,7 @@ User.create!(name:  "Example User",
              password:              "foobar",
              password_confirmation: "foobar",
              birthday: "1996-12-15",
-             postcode: "104-0061",
+             postcode: "1040061",
              address: "東京都中央区銀座６丁目10",
              creditcard: "123456789",
              creditpass: "123"
@@ -25,9 +25,9 @@ User.create!(name:  "Example User",
   password = "password"
   password_confirmation = "password"
   birthday = Faker::Time.between(40.years.ago, 18.years.ago, :all).to_s[0, 10]
-  postcode = Faker::Address.postcode
+  postcode = "1234567"
   address = Faker::Address.full_address
-  creditcard = Faker::Business.credit_card_number
+  creditcard = "123456789"
   creditpass = "456"
   User.create!(name:  name,
                email: email,
@@ -78,7 +78,6 @@ Product.create!(product_name:  "例えばTシャツ",
         picture: picture,
         )
 end
-=end
 
 
 Size.create!(size_name:  "XL")
@@ -107,5 +106,16 @@ end
 
 Cart.create!(user_id: "1",
             ware_id: "1",
-            carts_count: "2"
+            cart_count: "2"
+            )
+
+Order.create!(user_id: "1",
+            ware_id: "1",
+            order_count: "1"
+            )
+=end
+
+Cart.create!(user_id: "1",
+            ware_id: "2",
+            cart_count: "1"
             )

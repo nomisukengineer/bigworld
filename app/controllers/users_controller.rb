@@ -34,6 +34,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def carts
+    @user = User.find(params[:id])
+    @carts = @user.carts
+  end
+
+  def orders
+    @user = User.find(params[:id])
+    @carts = @user.carts
+  end
+
+  def orders_history
+    @user = User.find(params[:id])
+    @orders = @user.orders
+  end
+
   private
 
     def user_params
