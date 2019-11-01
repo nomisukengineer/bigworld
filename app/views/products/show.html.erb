@@ -39,6 +39,10 @@
               <%= Size.find(size_id).size_name %>  
             <td>
                 <%= link_to "買い物カゴに入れる", "#", class: 'btn btn-default' %>
+                <% button_to "カゴに入れる", action: "new" %>
+              <%= form_tag("/users/#{@user.id}/carts") do %>
+                　<input type="submit" value="登録"></input>
+                <% end %>
             </td>
             </th>
           </table>

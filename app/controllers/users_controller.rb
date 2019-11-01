@@ -39,6 +39,11 @@ class UsersController < ApplicationController
     @carts = @user.carts
   end
 
+  def add_carts
+    @user = User.find(params[:id])
+    
+  end
+
   def orders
     @user = User.find(params[:id])
     @carts = @user.carts

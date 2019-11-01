@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @product = Product.find(params[:id])
 #    @size_ids = Product.find(params[:id]).wares.pluck("size_id").uniq
 #    @size_ids = get_size_ids(params[:id])
