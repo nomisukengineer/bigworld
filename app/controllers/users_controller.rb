@@ -42,15 +42,32 @@ class UsersController < ApplicationController
 
   end
 
+=begin
   def create_carts
     @user = User.find(session[:user_id])
     @product = Product.find(params[:id])
-
+    @size_ids = Product.get_size_ids(params[:id])
+    #debugger
     # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
-    id = Ware.where("product_id = #{@product.id} and size_id = 1").ids[0]
+    id = Ware.where("product_id = #{@product.id} and size_id = #{@size_id}").ids[0]
     @ware=Ware.find(id)
     # Cart.create!(user_id: @user.id, ware_id: @ware.pluck("id"), cart_count: 1)
-    # debugger
+
+
+    Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
+    redirect_to "/users/#{@user.id}/carts"
+  end
+=end
+
+  def create_carts
+    @user = User.find(session[:user_id])
+    @product = Product.find(params[:id])
+    @size_id = Size.find(params[:size_id])
+    #debugger
+    # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
+    id = Ware.where("product_id = #{@product.id} and size_id = #{@size_id.id}").ids[0]
+    @ware=Ware.find(id)
+    
     Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
     redirect_to "/users/#{@user.id}/carts"
   end

@@ -45,17 +45,8 @@
 
                 <%= form_tag("/users/#{@user.id}/carts", method: :post) do |f| %>
                   <input type="submit" value="登録"></input>
-                  <input type="hidden" value = @product.id ></input>
-                  <input type="hidden" value = Size.fiind(size_id).size_id ></input>
-
-<%
-=begin
-%>
-                    <%= f.hidden_field :product_id, value: "hogehog" %>
-                    <%= f.hidden_field :size_id, :value => Size.fiind(size_id).size_id %>
-<%
-=end
-%>
+                  <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+                  <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
                   
                 <% end %>
               </td>
