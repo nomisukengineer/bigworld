@@ -6,12 +6,12 @@
       </div>
       <span class="product-detail-content">
 
-      <div class=detail-head>
-        <h1>
-          <%= @product.product_name %>
-        </h1>
-        <%= link_to "お気に入りに登録", "#", class: 'btn btn-default' %>
-      </div>
+        <div class=detail-head>
+          <h1>
+            <%= @product.product_name %>
+          </h1>
+          <%= link_to "お気に入りに登録", "#", class: 'btn btn-default' %>
+        </div>
 
         <table>
           <tr>
@@ -31,23 +31,38 @@
           </tr>
         </table>
 
-      <div class="product-size">
-        <h3>Size</h3>
-        <% @size_ids.each do |size_id| %>
-          <table>
-            <th>
-              <%= Size.find(size_id).size_name %>  
-            <td>
-                <%= link_to "買い物カゴに入れる", "#", class: 'btn btn-default' %>
-                <% button_to "カゴに入れる", action: "new" %>
-              <%= form_tag("/users/#{@user.id}/carts") do %>
-                　<input type="submit" value="登録"></input>
+        <div class="product-size">
+          
+
+
+
+          <h3>Size</h3>
+          <% @size_ids.each do |size_id| %>
+            <table>
+              <th>
+                <%= Size.find(size_id).size_name %>  
+              <td>
+
+                <%= form_tag("/users/#{@user.id}/carts", method: :post) do |f| %>
+                  <input type="submit" value="登録"></input>
+                  <input type="hidden" value = @product.id ></input>
+                  <input type="hidden" value = Size.fiind(size_id).size_id ></input>
+
+<%
+=begin
+%>
+                    <%= f.hidden_field :product_id, value: "hogehog" %>
+                    <%= f.hidden_field :size_id, :value => Size.fiind(size_id).size_id %>
+<%
+=end
+%>
+                  
                 <% end %>
-            </td>
-            </th>
-          </table>
-        <% end %>
-      </div>
-    </span>
+              </td>
+              </th>
+            </table>
+          <% end %>
+        </div>
+      </span>
   </section>
 </div>

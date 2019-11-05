@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-=begin
+
+
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
@@ -93,15 +94,11 @@ Ware.create!(product_id:  "1",
             amount:   5,
             )
 
-99.times do |n|
-    product_id  = Faker::Number.between(from =1, to = 10)
-    size_id = Faker::Number.between(from =1, to = 5)
-    amount = Faker::Number.between(from =1, to = 10)
-    Ware.create!(product_id:  product_id,
-        size_id: size_id,
-        amount:   amount,
+
+Ware.create!(product_id:  1,
+        size_id: 2,
         )
-end
+
 
 
 Cart.create!(user_id: "1",
@@ -113,9 +110,22 @@ Order.create!(user_id: "1",
             ware_id: "1",
             order_count: "1"
             )
-=end
+
 
 Cart.create!(user_id: "1",
             ware_id: "2",
             cart_count: "1"
             )
+
+
+            User.create!(name:  "Example User1",
+             email: "example1@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             birthday: "1996-12-15",
+             postcode: "1040061",
+             address: "東京都中央区銀座６丁目10",
+             creditcard: "123456789",
+             creditpass: "123",
+             admin:true
+             )

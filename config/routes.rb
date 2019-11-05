@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   root 'products#index'
   get 'products/new'
-
   get 'products/index'
+  post 'products/new', to: 'products#create'
   resources :products
 
   get 'sessions/new'
@@ -23,11 +23,10 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   resources :users do
-    member do
-      get 'carts' 
-      get 'orders'
-      get 'orders_history'
-    end
+      get 'carts', on: :member
+      post 'carts', to: 'users#create_carts', on: :member
+      get 'orders', on: :member
+      get 'orders_history', on: :member
   end
   
   resources :carts

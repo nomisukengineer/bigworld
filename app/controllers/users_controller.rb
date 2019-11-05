@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+  :following, :followers]
   def show
     @user = User.find(params[:id])
   end
@@ -35,13 +37,22 @@ class UsersController < ApplicationController
   end
 
   def carts
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @carts = @user.carts
+
   end
 
-  def add_carts
-    @user = User.find(params[:id])
-    
+  def create_carts
+    @user = User.find(session[:user_id])
+    @product = Product.find(params[:id])
+
+    # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
+    id = Ware.where("product_id = #{@product.id} and size_id = 1").ids[0]
+    @ware=Ware.find(id)
+    # Cart.create!(user_id: @user.id, ware_id: @ware.pluck("id"), cart_count: 1)
+    # debugger
+    Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
+    redirect_to "/users/#{@user.id}/carts"
   end
 
   def orders
@@ -79,4 +90,5 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+
 end

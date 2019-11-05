@@ -1,5 +1,17 @@
 class ProductsController < ApplicationController
   def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new
+    if @product.save
+      flash[:success] = "商品が追加されました。"
+      # 保存の成功をここで扱う。
+      redirect_to products_path
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -14,6 +26,11 @@ class ProductsController < ApplicationController
     @products = Product.paginate(page: params[:page])
   end
 
+  private
 
+    def product_params
+      params.require(:product).permit(:product_name, :gender_id, :category_id,
+             :price)
+    end
 
 end
