@@ -1,3 +1,3 @@
 class Reaction < ApplicationRecord
-  belongs_to :reaction_product_id
+  has_many :favorites
 end

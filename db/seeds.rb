@@ -117,8 +117,26 @@ Cart.create!(user_id: "1",
             cart_count: "1"
             )
 
+Reaction.create!(reaction_name: "お気に入り"
+            )
 
-            User.create!(name:  "Example User1",
+Favorite.create!(user_id: "1",
+                reaction_id: "1",
+                product_id: "1"
+            )
+
+Favorite.create!(user_id: "1",
+                reaction_id: "1",
+                product_id: "2"
+            )
+
+Favorite.create!(user_id: "2",
+            reaction_id: "1",
+            product_id: "5"
+            )
+
+
+User.create!(name:  "Example User1",
              email: "example1@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       post 'carts', to: 'users#create_carts', on: :member
       get 'orders', on: :member
       get 'orders_history', on: :member
+      post 'favorites', to: 'users#create_favorites', on: :member
+      get 'favorites', on: :member
   end
   
   resources :carts

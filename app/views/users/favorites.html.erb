@@ -1,0 +1,24 @@
+<% provide(:title, 'お気に入り一覧') %>
+<h1>お気に入り一覧</h1>
+
+<div class="buy-button">
+
+</div>
+<main>
+<div class="content-area">
+    <% @favorites.each do |favorite| %>
+        <div class="content">
+        <table>
+        <tr>
+        <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
+        <th>
+            <%= favorite.product.product_name %>
+        <tr>
+            <td>ジャンル　<%= favorite.product.category.category_name %></td>
+        <tr>
+            <td>¥<%= favorite.product.price %></td>
+        </table>
+        </div>
+    <% end %>
+</div>
+</main>

@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 20191105021121) do
   create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "reaction_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_favorites_on_product_id"
     t.index ["reaction_id"], name: "index_favorites_on_reaction_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
@@ -67,10 +69,8 @@ ActiveRecord::Schema.define(version: 20191105021121) do
 
   create_table "reactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "reaction_name"
-    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_reactions_on_product_id"
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(version: 20191105021121) do
     t.index ["size_id"], name: "index_wares_on_size_id"
   end
 
+  add_foreign_key "favorites", "products"
   add_foreign_key "favorites", "reactions"
   add_foreign_key "favorites", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "wares"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "genders"
-  add_foreign_key "reactions", "products"
   add_foreign_key "wares", "products"
   add_foreign_key "wares", "sizes"
 end

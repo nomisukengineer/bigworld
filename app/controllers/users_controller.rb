@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
   def create_carts
     @user = User.find(session[:user_id])
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:product_id])
     @size_id = Size.find(params[:size_id])
     #debugger
     # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
@@ -73,13 +73,37 @@ class UsersController < ApplicationController
   end
 
   def orders
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @carts = @user.carts
   end
 
   def orders_history
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @orders = @user.orders
+  end
+
+  def favorites
+    @user = User.find(session[:user_id])
+    @favorites = @user.favorites
+  end
+
+  def create_favorites
+    @user = User.find(session[:user_id])
+    @product = Product.find(params[:product_id])
+
+    Favorite.create!(user_id: @user.id, reaction_id: 1, product_id: @product.id)
+    redirect_to "/users/#{@user.id}/favorites"
+  end
+
+  def buy
+    user = User.find_by(creditcard: params[:creditcard])
+    if user && user.authenticate1(params[:creditpass])
+      # ユーザーログイン後にホームのページにリダイレクトする
+      redirect_to "/users/#{@user.id}/orders_history"
+    else
+      flash.now[:danger] = 'Invalid creditcard/creditpass combination'
+      render "/users/#{@user.id}/orders"
+    end
   end
 
   private

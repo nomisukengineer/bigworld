@@ -2,6 +2,7 @@ class Product < ApplicationRecord
     belongs_to :gender
     belongs_to :category
     has_many :wares
+    has_many :favorites
 
     def self.get_size_ids(product_id)
         Product.find(product_id).wares.pluck("size_id").uniq

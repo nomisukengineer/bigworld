@@ -10,7 +10,11 @@
           <h1>
             <%= @product.product_name %>
           </h1>
-          <%= link_to "お気に入りに登録", "#", class: 'btn btn-default' %>
+          <%= form_tag("/users/#{@user.id}/favorites", method: :post) do |f| %>
+            <input type="submit" value="お気に入り登録"></input>
+            <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+            <input type="hidden" name = "reaction_id" value = 1 ></input>
+          <% end %>
         </div>
 
         <table>
@@ -44,10 +48,9 @@
               <td>
 
                 <%= form_tag("/users/#{@user.id}/carts", method: :post) do |f| %>
-                  <input type="submit" value="登録"></input>
+                  <input type="submit" value="買い物カゴに入れる"></input>
                   <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
                   <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
-                  
                 <% end %>
               </td>
               </th>

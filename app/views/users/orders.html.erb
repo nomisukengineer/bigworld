@@ -37,11 +37,12 @@
 
     <div class="creditpass">
     <p>購入する場合</p>
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages_users', object: f.object %>
+    <%= form_for(@user, url: {controller: "users", action: "buy"}) do |f| %>
+
 
         <%= f.label :creditpass, "クレジットカードの暗証番号" %>
         <%= f.text_field :creditpass, class: 'form-control' %>
+        <input type="hidden" name = "creditcard" value = <%= @user.creditcard %> ></input>
 
         <%= f.submit "購入する", class: "btn btn-primary" %>
     <% end %>
