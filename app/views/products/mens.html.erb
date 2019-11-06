@@ -1,18 +1,8 @@
-<% provide(:title, '商品一覧') %>
-<h1>新着商品</h1>
+<% provide(:title, 'メンズ') %>
+<h1>メンズ</h1>
 
 <%= link_to "Mens", "/products/mens", class: 'btn btn-default'  %>
 <%= link_to "Ladies", "/products/ladies", class: 'btn btn-default'  %>
-
-<!-- form_tagでmens/ladiesボタンを作ろうとした時の奮闘のあと
-<%= form_tag("/products/ladies", method: :get) do |f| %>
-  <input type="submit" value="Ladies"></input>
-  <input type="hidden" name = "gender_id" value = 2 ></input>
-<% end %>
- -->
-
-
-<%= will_paginate %>
 
 <!--  検索拡張機能  -->
 <p>商品の検索</p>
@@ -24,7 +14,7 @@
 <main>
 <div class="content-area">
 
-  <% @products.each do |product| %>
+  <% @mens_products.each do |product| %>
     <div class="content">
 
       <table>
@@ -44,4 +34,3 @@
  </div>
 
 </main>
-<%= will_paginate %>

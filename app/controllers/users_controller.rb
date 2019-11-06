@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-  :following, :followers]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  protect_from_forgery
   def show
     @user = User.find(params[:id])
   end
@@ -95,14 +95,20 @@ class UsersController < ApplicationController
     redirect_to "/users/#{@user.id}/favorites"
   end
 
-  def buy
-    user = User.find_by(creditcard: params[:creditcard])
-    if user && user.authenticate1(params[:creditpass])
+  def thankyou
+    input_user = User.find_by(creditcard: params[:creditcard])
+    #debugger
+    if input_user.creditpass == params[:user][:creditpass]
       # ユーザーログイン後にホームのページにリダイレクトする
+      @user = User.find(session[:user_id])
+      @ware_ids = @user.carts.pluck("ware_id")
+      
+      @ware_ids.each do |ware_id|
+        Order.create!(user_id: @user.id, ware_id: ware_id, order_count: 1)
+      end
       redirect_to "/users/#{@user.id}/orders_history"
     else
-      flash.now[:danger] = 'Invalid creditcard/creditpass combination'
-      render "/users/#{@user.id}/orders"
+
     end
   end
 

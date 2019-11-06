@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @product = Product.find(params[:id])
 #    @size_ids = Product.find(params[:id]).wares.pluck("size_id").uniq
 #    @size_ids = get_size_ids(params[:id])
@@ -23,7 +23,17 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.paginate(page: params[:page])
+    @products = Product.paginate(page: params[:page]).search(params[:search])
+    @mens = Gender.find(1)
+    @ladies = Gender.find(2)
+  end
+
+  def mens
+    @mens_products = Gender.find(1).products.paginate(page: params[:page])
+  end
+
+  def ladies
+    @ladies_products = Gender.find(2).products.paginate(page: params[:page])
   end
 
   private

@@ -46,6 +46,10 @@ class User < ApplicationRecord
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
 
+    def self.get_ware_ids(user_id)
+        User.find(session[:user_id]).wares.pluck("ware_id")
+    end
+
     def authenticate1
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end

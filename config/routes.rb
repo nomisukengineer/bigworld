@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   root 'products#index'
   get 'products/new'
-  get 'products/index'
   post 'products/new', to: 'products#create'
-  resources :products
+  get 'products/mens', to: 'products#mens'
+  get 'products/ladies', to: 'products#ladies'
+  resources :products 
 
   get 'sessions/new'
 
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
       get 'orders_history', on: :member
       post 'favorites', to: 'users#create_favorites', on: :member
       get 'favorites', on: :member
+      get 'thankyou', on: :member
+      #patch 'thankyou', to: 'users#thankyou',on: :member
   end
   
   resources :carts
