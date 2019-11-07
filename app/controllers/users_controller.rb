@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :admin_user,     only: :destroy
   protect_from_forgery
   def show
     @user = User.find(params[:id])
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
       # 保存の成功をここで扱う。
       log_in @user
       flash[:success] = "Welcome!"
+      remember_user
       redirect_to root_path
     else
       render 'new'
@@ -39,25 +41,9 @@ class UsersController < ApplicationController
   def carts
     @user = User.find(session[:user_id])
     @carts = @user.carts
-
+    #@ware_ids = @user.carts.pluck("ware_id")
   end
 
-=begin
-  def create_carts
-    @user = User.find(session[:user_id])
-    @product = Product.find(params[:id])
-    @size_ids = Product.get_size_ids(params[:id])
-    #debugger
-    # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
-    id = Ware.where("product_id = #{@product.id} and size_id = #{@size_id}").ids[0]
-    @ware=Ware.find(id)
-    # Cart.create!(user_id: @user.id, ware_id: @ware.pluck("id"), cart_count: 1)
-
-
-    Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
-    redirect_to "/users/#{@user.id}/carts"
-  end
-=end
 
   def create_carts
     @user = User.find(session[:user_id])
@@ -67,8 +53,15 @@ class UsersController < ApplicationController
     # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
     id = Ware.where("product_id = #{@product.id} and size_id = #{@size_id.id}").ids[0]
     @ware=Ware.find(id)
-    
     Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
+    redirect_to "/users/#{@user.id}/carts"
+  end
+
+  def destroy_carts
+    @user = User.find(session[:user_id])
+    id = Cart.find_by(params[:cart_id]).id
+    cart = Cart.find(id)
+    cart.destroy
     redirect_to "/users/#{@user.id}/carts"
   end
 
@@ -92,6 +85,14 @@ class UsersController < ApplicationController
     @product = Product.find(params[:product_id])
 
     Favorite.create!(user_id: @user.id, reaction_id: 1, product_id: @product.id)
+    redirect_to "/users/#{@user.id}/favorites"
+  end
+
+  def destroy_favorites
+    @user = User.find(session[:user_id])
+    id = Favorite.find_by(params[:favorite_id]).id
+    favorite = Favorite.find(id)
+    favorite.destroy
     redirect_to "/users/#{@user.id}/favorites"
   end
 
@@ -130,6 +131,11 @@ class UsersController < ApplicationController
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
     
     # 正しいユーザーかどうか確認

@@ -14,6 +14,12 @@
         <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
         <th>
             <%= cart.ware.product.product_name %>
+            
+        <td>
+            <%= form_tag("/users/#{@user.id}/carts", method: :delete) do %>
+                <%= submit_tag '削除', :name => nil %>
+                <input type="hidden" name = "cart_id" value = <%= cart.id %> ></input>
+            <% end %>
         <tr>
             <td>ジャンル　<%= cart.ware.product.category.category_name %></td>
         <tr>
@@ -21,7 +27,7 @@
         <tr>
             <td>¥<%= cart.ware.product.price %></td>
         <tr>
-            <td><%= cart.cart_count %></td>
+            <td><%= cart.cart_count %>点</td>
         </table>
         </div>
     <% end %>

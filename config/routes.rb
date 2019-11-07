@@ -26,15 +26,16 @@ Rails.application.routes.draw do
   resources :users do
       get 'carts', on: :member
       post 'carts', to: 'users#create_carts', on: :member
+      delete 'carts', to:'users#destroy_carts', on: :member
       get 'orders', on: :member
       get 'orders_history', on: :member
       post 'favorites', to: 'users#create_favorites', on: :member
       get 'favorites', on: :member
+      delete 'favorites', to:'users#destroy_favorites', on: :member
       get 'thankyou', on: :member
       #patch 'thankyou', to: 'users#thankyou',on: :member
   end
   
-  resources :carts
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

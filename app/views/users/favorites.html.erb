@@ -13,6 +13,11 @@
         <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
         <th>
             <%= favorite.product.product_name %>
+        <td>
+            <%= form_tag("/users/#{@user.id}/favorites", method: :delete) do %>
+                <%= submit_tag '削除', :name => nil %>
+                <input type="hidden" name = "favorite_id" value = <%= favorite.id %> ></input>
+            <% end %>
         <tr>
             <td>ジャンル　<%= favorite.product.category.category_name %></td>
         <tr>

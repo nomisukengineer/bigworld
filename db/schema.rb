@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20191105021121) do
     t.datetime "updated_at", null: false
     t.string "postcode"
     t.string "address"
-    t.boolean "admin"
+    t.boolean "admin", default: false
   end
 
   create_table "wares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

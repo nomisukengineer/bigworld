@@ -24,6 +24,15 @@ module SessionsHelper
         end
     end
 
+    # 渡されたユーザーがログイン済みユーザーであればtrueを返す
+    def current_user?(user)
+        user == current_user
+    end
+
+#    def admin?
+#        current_user.admin?
+#    end
+
     # ユーザーがログインしていればtrue、その他ならfalseを返す
     def logged_in?
         !current_user.nil?

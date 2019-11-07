@@ -41,7 +41,7 @@
 
 
         <%= f.label :creditpass, "クレジットカードの暗証番号" %>
-        <%= f.text_field :creditpass, class: 'form-control' %>
+        <%= f.password_field :creditpass, class: 'form-control' %>
         <input type="hidden" name = "creditcard" value = <%= @user.creditcard %> ></input>
         <input type="hidden" name = "ware_id" value = <%= @user.carts.pluck("ware_id") %> ></input>
 

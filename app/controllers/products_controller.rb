@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
       # 保存の成功をここで扱う。
       redirect_to products_path
     else
+      debugger
       render 'new'
     end
   end

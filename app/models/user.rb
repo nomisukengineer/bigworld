@@ -50,10 +50,6 @@ class User < ApplicationRecord
         User.find(session[:user_id]).wares.pluck("ware_id")
     end
 
-    def authenticate1
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
-    end
-
     # ユーザーのログイン情報を破棄する
     def forget
         update_attribute(:remember_digest, nil)
