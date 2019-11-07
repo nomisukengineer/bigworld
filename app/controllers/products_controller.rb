@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :new, :create, :index, :destroy, :show, :mens, :ladies, :analytics]
-  before_action :correct_user,   only: [:edit, :update]
+#  before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   before_action :orderd_product, only: :destroy
 
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     if @product.save
       flash[:success] = "商品が追加されました。"
       # 保存の成功をここで扱う。
-      redirect_to products_path
+      redirect_to "/products/#{@product.id}"
     else
       render 'new'
     end
@@ -93,7 +93,7 @@ class ProductsController < ApplicationController
       
       # 正しいユーザーかどうか確認
       def correct_user
-        @user = User.find(params[:id])
+        @user = User.find(session[:id])
         redirect_to(root_url) unless current_user?(@user)
       end
     

@@ -91,12 +91,13 @@ Size.create!(size_name:  "5XL")
 
 Ware.create!(product_id:  "1",
             size_id: "1",
-            amount:   5,
+            amount:   10
             )
 
 
 Ware.create!(product_id:  1,
         size_id: 2,
+        amount: 10
         )
 
 

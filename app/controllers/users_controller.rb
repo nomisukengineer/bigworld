@@ -97,14 +97,20 @@ class UsersController < ApplicationController
 
   def thankyou
     input_user = User.find_by(creditcard: params[:creditcard])
-    #debugger
+
     if input_user.creditpass == params[:user][:creditpass]
       # ユーザーログイン後にホームのページにリダイレクトする
       @user = User.find(session[:user_id])
       @ware_ids = @user.carts.pluck("ware_id")
+      #debugger
+
+      #id = Ware.where("product_id = #{@product.id} and size_id = 1").ids[0]
+      #@ware=Ware.find(id)
       
       @ware_ids.each do |ware_id|
-        Order.create!(user_id: @user.id, ware_id: ware_id, order_count: 1)
+        @order = Order.create!(user_id: @user.id, ware_id: ware_id, order_count: 1)
+        Ware.find(ware_id).update(:amount => Ware.find(ware_id).amount -=1)
+        Cart.find_by("user_id = #{@order.user_id} and ware_id = #{@order.ware_id}").destroy
       end
       redirect_to "/users/#{@user.id}/orders_history"
     else

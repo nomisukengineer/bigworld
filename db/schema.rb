@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20191105021121) do
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "ware_id"
-    t.string "cart_count"
+    t.integer "cart_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20191105021121) do
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "ware_id"
-    t.string "order_count"
+    t.integer "order_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20191105021121) do
   create_table "wares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "product_id"
     t.bigint "size_id"
-    t.string "amount"
+    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_wares_on_product_id"
