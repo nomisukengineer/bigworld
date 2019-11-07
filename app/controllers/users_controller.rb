@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show, :edit, :update, :carts, :create_carts, :destroy_carts, :orders, :orders_history, :favorites, :create_favorites, :destroy_favorites, :thankyou]
+  before_action :correct_user,   only: [:edit, :update]
   protect_from_forgery
   def show
     @user = User.find(params[:id])

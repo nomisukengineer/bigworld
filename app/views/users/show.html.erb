@@ -1,5 +1,11 @@
-<% provide(:title, @user.name) %>
-<h1>マイページ</h1>
+
+<% if current_user.admin? %>  
+  <% provide(:title, '管理者ページ') %>
+  <h1>管理者ページ</h1>
+<% else %>
+  <% provide(:title, 'マイページ') %>
+  <h1>マイページ</h1>
+<% end %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_title">
@@ -55,10 +61,17 @@
           </tr>
         </table>
       </section>
+      <% if current_user.admin? %>      
+      <%= link_to "変更", "/users/#{@user.id}/edit", class: 'btn btn-default' %>
+      <br>
+      <br>
+      <%= link_to "出品情報", '/products/analytics', class: 'btn btn-default' %>
+    <% else %>
       <%= link_to "変更", "/users/#{@user.id}/edit", class: 'btn btn-default' %>
       <%= link_to "お気に入り一覧", "/users/#{@user.id}/favorites", class: 'btn btn-default' %>
       <%= link_to "買い物カゴ一覧", "/users/#{@user.id}/carts", class: 'btn btn-default' %>
       <%= link_to "購入履歴一覧", "/users/#{@user.id}/orders_history", class: 'btn btn-default' %>
+    <% end %>
     </center>
   </aside>
 </div>

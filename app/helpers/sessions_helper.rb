@@ -11,27 +11,30 @@ module SessionsHelper
         cookies.permanent[:remember_token] = user.remember_token
     end
 
-    # 記憶トークンcookieに対応するユーザーを返す
-    def current_user
-        if (user_id = session[:user_id])
-        @current_user ||= User.find_by(id: user_id)
-        elsif (user_id = cookies.signed[:user_id])
-                user = User.find_by(id: user_id)
-            if user && user.authenticated?(cookies[:remember_token])
-                log_in user
-                @current_user = user
-            end
-        end
-    end
-
     # 渡されたユーザーがログイン済みユーザーであればtrueを返す
     def current_user?(user)
         user == current_user
     end
 
-#    def admin?
-#        current_user.admin?
-#    end
+    # 記憶トークンcookieに対応するユーザーを返す
+    def current_user
+        if (user_id = session[:user_id])
+        @current_user ||= User.find_by(id: user_id)
+        elsif (user_id = cookies.signed[:user_id])
+    #      raise       # テストがパスすれば、この部分がテストされていないことがわかる
+        user = User.find_by(id: user_id)
+            if user && user.authenticated?(cookies[:remember_token])
+                log_in user
+                @current_user = user
+            end
+
+        end
+    end
+
+    def admin?
+        current_user.admin?
+        return false if nil
+    end
 
     # ユーザーがログインしていればtrue、その他ならfalseを返す
     def logged_in?
@@ -62,5 +65,10 @@ module SessionsHelper
     # アクセスしようとしたURLを覚えておく
     def store_location
         session[:forwarding_url] = request.original_url if request.get?
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+        redirect_to(root_url) unless current_user.admin?
     end
 end

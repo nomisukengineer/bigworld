@@ -10,10 +10,15 @@
           <h1>
             <%= @product.product_name %>
           </h1>
-          <%= form_tag("/users/#{@user.id}/favorites", method: :post) do |f| %>
-            <input type="submit" value="お気に入り登録"></input>
-            <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
-            <input type="hidden" name = "reaction_id" value = 1 ></input>
+          <% if current_user.admin? %>
+            <%= link_to "更新する", "/products/#{@product.id}/edit", class: 'btn btn-default' %>
+
+          <% else %>
+            <%= form_tag("/users/#{@user.id}/favorites", method: :post) do |f| %>
+              <input type="submit" value="お気に入り登録", class: 'btn btn-default'></input>
+              <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+              <input type="hidden" name = "reaction_id" value = 1 ></input>
+            <% end %>
           <% end %>
         </div>
 
@@ -36,22 +41,33 @@
         </table>
 
         <div class="product-size">
-          
-
-
-
           <h3>Size</h3>
+          <table>
+          <tr>
+          <th>サイズ</th> <th>ボタン</th>
+          </tr>
           <% @size_ids.each do |size_id| %>
-            <table>
-              <th>
-                <%= Size.find(size_id).size_name %>  
-              <td>
+            <table> 
+              <% if current_user.admin? %>
+                <tr>
+                  <td><%= Size.find(size_id).size_name %></td>
 
+                  <td>
+                    <%= form_tag("/products/#{@product.id}", method: :delete) do |f| %>
+                      <input type="submit" value="削除する", class: 'btn btn-default'></input>
+                      <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+                      <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
+                    <% end %>
+                  </td>
+              <% else %>
+                <th>サイズ</th> <th>在庫数</th> <th>在庫削除</th>
+                <%= Size.find(size_id).size_name %> 
                 <%= form_tag("/users/#{@user.id}/carts", method: :post) do |f| %>
                   <input type="submit" value="買い物カゴに入れる"></input>
                   <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
                   <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
                 <% end %>
+              <% end %>
               </td>
               </th>
             </table>
