@@ -1,0 +1,26 @@
+<% provide(:title, '出品状況') %>
+<h1>出品状況</h1>
+
+<div class="table-area">
+<table>
+    <tr>
+    <th colspan="2">品種情報</th> <th colspan="3">製品情報</th>
+    </tr>
+    <tr>
+        <th>商品名</th> <th>商品のお気に入り数</th> <th>サイズ</th> <th>カート数</th> <th>在庫数</th>
+    </tr>
+
+    <% @wares.each do |ware| %>
+
+    <tr>
+        <td><%= ware.product.product_name %></td>
+        <td><%= ware.product.favorites.count %></td>
+        <td><%= ware.size.size_name %></td>
+        <td><%= ware.carts.pluck("cart_count")[0] %></td>
+        <td><%= ware.amount %></td>
+    </tr>
+    <% end %>
+
+
+</table>
+</div>

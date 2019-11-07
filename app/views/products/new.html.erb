@@ -9,11 +9,11 @@
       <%= f.label :product_name, "商品名" %>
       <%= f.text_field :product_name, class: 'form-control' %>
 
-      <%= f.label :gender, "性別" %>
-      <%= f.text_field :gender_id, class: 'form-control' %>
+      <%= f.label :gender_id, "性別" %>
+      <%= f.select :gender_id, [["男", "1"], ["女", "2"]], class: 'form-control' %>
 
       <%= f.label :category_id, "カテゴリー" %>
-      <%= f.text_field :category_id, class: 'form-control' %>
+      <%= f.select :category_id, [["コート", "1"], ["ジャンパー", "2"],["パーカー","3"],["シャツ", "4"],["Tシャツ","5"],["半ズボン","6"],["長ズボン","7"],["スカート","8"],["ワンピース","9"]], class: 'form-control' %>
 
       <%= f.label :price, "価格" %>
       <%= f.text_field :price, class: 'form-control' %>

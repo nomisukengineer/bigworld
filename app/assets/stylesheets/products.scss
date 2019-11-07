@@ -1,3 +1,15 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table-area table th{
+    padding : 20px 10px;
+    border:solid 1px #aaaaaa;
+    color:white; /*文字色*/
+    background-color: #2196f3; /*背景色*/
+  }
+  
+.table-area table td{
+    padding : 20px 10px;
+    border:solid 1px #aaaaaa;
+  }

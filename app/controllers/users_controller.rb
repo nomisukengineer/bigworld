@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user,     only: :destroy
   protect_from_forgery
   def show
     @user = User.find(params[:id])
@@ -16,7 +15,6 @@ class UsersController < ApplicationController
       # 保存の成功をここで扱う。
       log_in @user
       flash[:success] = "Welcome!"
-      remember_user
       redirect_to root_path
     else
       render 'new'

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'products/new', to: 'products#create'
   get 'products/mens', to: 'products#mens'
   get 'products/ladies', to: 'products#ladies'
+  get 'products/analytics', to: 'products#analytics'
   resources :products 
 
   get 'sessions/new'
