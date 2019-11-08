@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'products/ladies', to: 'products#ladies'
   get 'products/analytics', to: 'products#analytics'
   get 'products/:id/edit', to: 'products#edit'
+  get 'products/:id/update', to: 'products#update'
 
   resources :products
 

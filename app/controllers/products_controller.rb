@@ -53,12 +53,23 @@ class ProductsController < ApplicationController
     #debugger
     #product = Product.find(id)
     id = Ware.where("product_id = #{@product_id} and size_id = #{@size_id}").ids[0]
-    Ware.find(id).update(:amount => nil)
+    Ware.find(id).update(:amount => 0)
     redirect_to root_path
   end
 
   def edit
     @product = Product.find(params[:id])
+  end
+
+  def add_ware
+
+  end
+
+  def update
+    @ware = Ware.new
+#    @product = Product.find(params[:id])
+#    @ware = Ware.find_by("product_id = #{@product_id} and size_id = #{@size_id}")
+#    Ware.find(id).update(:amount => nil)
   end
 
   private
@@ -67,6 +78,11 @@ class ProductsController < ApplicationController
       params.require(:product).permit(:product_name, :gender_id, :category_id,
              :price)
     end
+
+#    def ware_params
+#      params.require(:ware).permit(:user_id, :size_id, :amount,
+#             )
+#    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password,

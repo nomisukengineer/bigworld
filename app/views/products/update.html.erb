@@ -1,0 +1,23 @@
+<% provide(:title, 'サイズと在庫を更新') %>
+
+<h1>サイズと在庫を更新</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@ware, url:"products/#{@product.id}/update") do |f| %>
+      <%= render 'shared/error_messages_products', object: f.object %>
+
+      <%= f.label :商品名 %>
+      <%= f.text_field :product.wares.product_id, class: 'form-control' %>
+
+      <%= f.label :サイズ %>
+      <%= f.email_field :size_id, class: 'form-control' %>
+
+      <%= f.label :在庫数 %>
+      <%= f.password_field :amount, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

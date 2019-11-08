@@ -2,7 +2,8 @@
 <div class="row">
   <section class="detail_info">
       <div class="product-detail-picture">
-        <%= image_tag("00300-ACT_133_F.png", alt: "T-shirt") %>
+      <%= image_tag("#{@product.category_id}.png", alt: "T-shirt") %>
+
       </div>
       <span class="product-detail-content">
 
@@ -11,7 +12,7 @@
             <%= @product.product_name %>
           </h1>
           <% if current_user.admin? %>
-            <%= link_to "更新する", "/products/#{@product.id}/edit", class: 'btn btn-default' %>
+            <%= link_to "商品を更新", "/products/#{@product.id}/edit", class: 'btn btn-default' %>
 
           <% else %>
             <%= form_tag("/users/#{@user.id}/favorites", method: :post) do |f| %>
@@ -43,29 +44,46 @@
         <div class="product-size">
           <h3>Size</h3>
           <%= form_tag("/products/#{@product.id}", method: :put) do |f| %>
-          <input type="submit" value="商品を追加", class: 'btn btn-default'></input>
+          <input type="submit" value="サイズと在庫を更新", class: 'btn btn-default'></input>
           <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+          <% end %>
 
-        <% end %>
-          <table>
+
+
+          <% if current_user.admin? %>
+
+
+
+          <table><br>
           <tr>
           <th>サイズ</th> <th>ボタン</th>
           </tr>
-          <% @size_ids.each do |size_id| %>
-            <table> 
-              <% if current_user.admin? %>
-                <tr>
-                  <td><%= Size.find(size_id).size_name %></td>
+            <% @size_ids.each do |size_id| %>
+              <tr>
+                <td><%= Size.find(size_id).size_name %></td>
+                <td>
+                  <%= form_tag("/products/#{@product.id}", method: :delete) do |f| %>
+                    <input type="submit" value="削除する", class: 'btn btn-default'></input>
+                    <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+                    <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
+                  <% end %>
+                </td>
+                <td>
+                  <%= form_for(@user, url: "/products/#{@product.id}/update", html: {method: 'get'}) do |f| %>
+                    <%= f.label :product_id %>
+                    <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
+                    <%= f.submit "サイズと在庫を更新", class: "btn btn-primary" %>
+                  <% end %>
+                </td>
+            <% end %>
+            </table>
 
-                  <td>
-                    <%= form_tag("/products/#{@product.id}", method: :delete) do |f| %>
-                      <input type="submit" value="削除する", class: 'btn btn-default'></input>
-                      <input type="hidden" name = "product_id" value = <%= @product.id %> ></input>
-                      <input type="hidden" name = "size_id" value = <%= size_id %> ></input>
-                    <% end %>
-
-                  </td>
-              <% else %>
+          <% else %>
+              <table>
+              <tr>
+              <th>サイズ</th> <th>ボタン</th>
+              </tr>
+              <% @size_ids.each do |size_id| %>
                 <tr>
                 <td><%= Size.find(size_id).size_name %></td>
                 <td>
