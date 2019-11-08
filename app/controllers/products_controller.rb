@@ -25,6 +25,11 @@ class ProductsController < ApplicationController
 #    @size_ids = Product.find(params[:id]).wares.pluck("size_id").uniq
 #    @size_ids = get_size_ids(params[:id])
     @size_ids = Product.get_size_ids(params[:id])
+    
+    @ware1 = Ware.where("product_id = #{@product.id} and size_id =1").first
+    @ware2 = Ware.where("product_id = #{@product.id} and size_id =2").first
+    @ware3 = Ware.where("product_id = #{@product.id} and size_id =3").first
+    @ware4 = Ware.where("product_id = #{@product.id} and size_id =4").first
 
   end
 
@@ -49,7 +54,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product_id = Product.find(params[:product_id]).id
-    @size_id = Size.find(params[:size_id]).id
+    @size_id = Size.find(params[:size_id]).i
     #debugger
     #product = Product.find(id)
     id = Ware.where("product_id = #{@product_id} and size_id = #{@size_id}").ids[0]
@@ -65,18 +70,46 @@ class ProductsController < ApplicationController
 
   end
 
-  def update
+  def ware_new
+    @product = Product.find(params[:product_id])
+    @size = Size.find(params[:size_id])
+
     @ware = Ware.new
-#    @product = Product.find(params[:id])
-#    @ware = Ware.find_by("product_id = #{@product_id} and size_id = #{@size_id}")
-#    Ware.find(id).update(:amount => nil)
+  end
+
+  def ware_create
+    @product = Product.find(params[:product_id])
+    @ware = Ware.new(ware_params)
+      if @ware.save
+        flash[:success] = "商品が変更されました"
+        # 保存の成功をここで扱う。
+        redirect_to "/products/#{@product.id}"
+      else
+        redirect_to "/products/#{@product.id}/ware/new"
+      end
+  end
+
+  def ware_edit
+    @product = Product.find(params[:product_id])
+    @size_id = params[:size_id]
+    @ware = Ware.where("product_id = #{@product.id} and size_id =#{@size_id}").first
+    #Ware.find(@ware.id).update(:amount => Ware.find(@ware.id).amount)
+
+  end
+
+  def ware_update
+    @product = Product.find(params[:product_id])
+    @size = Size.find(params[:ware][:size_id])
+    @ware = Ware.where("product_id = #{@product.id} and size_id =#{@size.id}").first
+    Ware.find(@ware.id).update(:amount => params[:ware][:amount])
+    redirect_to "/products/#{@product.id}"
   end
 
   private
 
-    def product_params
-      params.require(:product).permit(:product_name, :gender_id, :category_id,
-             :price)
+    def ware_params
+      params.require(:ware).permit(:product_id, :size_id,
+             :amount)
     end
 
 #    def ware_params

@@ -11,7 +11,13 @@ Rails.application.routes.draw do
   get 'products/:id/edit', to: 'products#edit'
   get 'products/:id/update', to: 'products#update'
 
-  resources :products
+  resources :products do
+    get 'ware/new', to: 'products#ware_new'
+    post 'ware/new', to: 'products#ware_create'
+    get 'ware/edit', to: 'products#ware_edit'
+    patch 'ware/edit', to: 'products#ware_update'
+    put 'ware/edit', to: 'products#ware_update'
+  end
 
   get 'sessions/new'
 

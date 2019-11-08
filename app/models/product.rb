@@ -22,6 +22,14 @@ class Product < ApplicationRecord
         end
     end
 
+    def zaiko4
+        if Ware.where("product_id = #{@product.id} and size_id =4").first.amount.nil?
+            0
+        else
+            Ware.where("product_id = #{@product.id} and size_id =4").first.amount
+        end
+    end
+
 #    def feed
 #        wares.size_ids = "select from wares where product_id = (select products.id from where products.id = 1)"
 #        Size.where("sizes.id in (#{ware.size_ids})")
