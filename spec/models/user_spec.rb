@@ -80,6 +80,21 @@ RSpec.describe User, type: :model do
             expect(user.errors[:name]).to include("is too long (maximum is 50 characters)")
         end
 
+        it "is invalid with 52 characters" do
+            user = User.new(
+                name: "a"*52,
+                email: "nomi@gmail.com",
+                password: "password",
+                postcode: "1234567",
+                address: "東京都中央区銀座6丁目10",
+                birthday: "1996-12-15",
+                creditcard: "1234567890123456",
+                creditpass: "123"
+                )
+            user.valid?
+            expect(user.errors[:name]).to include("is too long (maximum is 50 characters)")
+        end
+
         #[フォーマット]名前が全角文字でも有効
         it "is valid with 全角name" do
             user = User.new(

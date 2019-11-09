@@ -63,20 +63,20 @@ Product.create!(product_name:  "例えばTシャツ",
                 gender_id: "1",
                 category_id: "5",
                 price: "1100",
-                picture: "User/naohiro-nomi/picture/image.jpg"
+                picture: "1.png"
             )
 
 99.times do |n|
     product_name  = Faker::Name.name
     gender_id = Faker::Number.between(from =1, to = 2)
-    category_id = Faker::Number.between(from =1, to = 8)
+    @category_id = Faker::Number.between(from =1, to = 8)
     price = Faker::Commerce.price(range = 1000..10000.0, as_string = false)
-    picture = Faker::Internet.url
+#    @picture = Faker::Number.between(from =1, to = 10)
     Product.create!(product_name:  product_name,
         gender_id: gender_id,
-        category_id:   category_id,
+        category_id:   @category_id,
         price: price,
-        picture: picture,
+        picture: @category_id
         )
 end
 

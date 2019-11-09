@@ -226,19 +226,39 @@ main{
   background: #FFF;
   height: 600px;
   overflow: hidden;
+
 }
 
-.product-detail-picture{
+.product-detail-content{
+
   float: left;
-  margin-right: 10px;
 }
+
 
 .formtag{
   width: 300px;
-  margin-right: 10px;
+  height: 10px;
+  margin-right: 5px;
+  margin-bottom: 30px;
+  float: left;
+}
+.input{
+  width: 300px;
+  height: 10px;
+  margin-right: 5px;
+}
+.product-detail-picture {
+  float: left;
 }
 
-.favorite{
+.product-detail-head{
+  margin-right: 10px;
+  float: left;
+}
+
+
+
+.input{
   background-color: #e4d651;
   border-style: none;
 }
