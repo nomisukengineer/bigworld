@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20191105021121) do
   create_table "wares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "product_id"
     t.bigint "size_id"
-    t.integer "amount", default: 0, null: false
+    t.integer "amount", default: 0, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_wares_on_product_id"

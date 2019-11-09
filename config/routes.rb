@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'order/new'
 
   root 'products#index'
   get 'products/new'
