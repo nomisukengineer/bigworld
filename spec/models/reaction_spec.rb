@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Reaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "複数のfavoritesを持つこと[143]" do
+    it {is_expected.to have_many(:favorites)}
+  end
 end

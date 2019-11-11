@@ -235,6 +235,56 @@ RSpec.describe User, type: :model do
         end
 =end
 
+        it "is 60 characters with password_digest[32]" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "password",
+            postcode: "1234567",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "1996-12-15",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            user.save!
+            expect(user.password_digest).not_to be_nil
+            expect(user.password_digest.size).to eq(60)
+        end
+
+
+        it "is same password_digest when password is same[34]" do
+#            user = User.new(
+#            name: "nomisuke",
+#            email: "nomi@gmail.com",
+#            password: "password",
+#            postcode: "1234567",
+#            address: "東京都中央区銀座6丁目10",
+#            birthday: "1996-12-15",
+#            creditcard: "1234567890123456",
+#            creditpass: "123"
+#            )
+            #SecureRandom.urlsafe_base64.length
+            expect(SecureRandom.urlsafe_base64.size).to eq(22)
+        end
+
+        
+        it "is true when password is true[35]" do
+            user = User.new(
+            name: "nomisuke",
+            email: "nomi@gmail.com",
+            password: "password",
+            postcode: "1234567",
+            address: "東京都中央区銀座6丁目10",
+            birthday: "1996-12-15",
+            creditcard: "1234567890123456",
+            creditpass: "123"
+            )
+            user.save!
+            expect(user.remember_digest).to eq(nil)
+            #expect(BCrypt::Password.new(remember_digest).is_password?(remember_token)).to.eq("true")
+        end
+
+
         it "is valid when password is 5 characters" do
             user = User.new(
             name: "nomisuke",
@@ -573,4 +623,26 @@ RSpec.describe User, type: :model do
         end
     end
 =end
+
+    describe "永続セッションのためにユーザーをデータベースに記憶すること[35]" do
+        let!(:user) { create(:user, name: "nomisuke", email: "nomi@gmail.com", password: "nominomi1",
+                    postcode: "1234567", address: "東京都杉並区", creditcard: 123456, creditpass: 123) }
+        it "デフォルトnilがnilじゃ無くなる[35]" do
+            expect(user.remember_digest).to eq nil
+            user.remember
+            expect(user.remember_digest).not_to eq nil
+        end
+    end
+
+    describe "あああ"
+        let!(:user) { create(:user, password: "nominomi1", remember_digest: nil) }
+        it "渡されたトークンがnilの場合、falseを返す[36]" do
+            remember_token = "token"
+            expect(user.authenticated?("token")).to eq (false)
+        end
+        it "渡されたトークンがダイジェストが一致した場合、trueを返す[37]" do
+            expect(user.authenticated?)
+        end
+
 end
+

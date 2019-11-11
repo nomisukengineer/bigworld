@@ -3,14 +3,15 @@ class Product < ApplicationRecord
     belongs_to :category
     has_many :wares
     has_many :favorites
+    validates :product_name, presence: true, length: { maximum: 30 }
 
     def self.get_size_ids(product_id)
         Product.find(product_id).wares.pluck("size_id").uniq
     end
 
-    def self.get_gender_ids(product_id)
-        Product.find(product_id).wares.pluck("gender_id").uniq
-    end
+#    def self.get_gender_ids(product_id)
+#        Product.find(product_id).wares.pluck("gender_id").uniq
+#    end
 
 
 
@@ -22,16 +23,4 @@ class Product < ApplicationRecord
         end
     end
 
-    def zaiko4
-        if Ware.where("product_id = #{@product.id} and size_id =4").first.amount.nil?
-            0
-        else
-            Ware.where("product_id = #{@product.id} and size_id =4").first.amount
-        end
-    end
-
-#    def feed
-#        wares.size_ids = "select from wares where product_id = (select products.id from where products.id = 1)"
-#        Size.where("sizes.id in (#{ware.size_ids})")
-#    end
 end

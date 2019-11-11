@@ -36,9 +36,6 @@ class User < ApplicationRecord
         update_attribute(:remember_digest, User.digest(remember_token))
     end
 
-    def self.get_size_ids(product_id)
-        Product.find(product_id).wares.pluck("size_id").uniq
-    end
 
     # 渡されたトークンがダイジェストと一致したらtrueを返す
     def authenticated?(remember_token)
@@ -46,9 +43,6 @@ class User < ApplicationRecord
         BCrypt::Password.new(remember_digest).is_password?(remember_token)
     end
 
-    def self.get_ware_ids(user_id)
-        User.find(session[:user_id]).wares.pluck("ware_id")
-    end
 
     # ユーザーのログイン情報を破棄する
     def forget

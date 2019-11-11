@@ -1,12 +1,14 @@
 FactoryBot.define do
   factory :user do
     name { "MyString" }
-    email { "MyString" }
+    email { "nominomi@gmail.com" }
     password_digest { "MyString" }
     birthday { "2019-10-29" }
-    creditcard { "MyString" }
-    creditpass { "MyString" }
-    remember_digest { "MyString" }
+    creditcard { 123455678 }
+    creditpass { 123 }
+    postcode {1234567}
+    address {"東京都"}
+    remember_digest { nil }
     activation_digest { "MyString" }
     activated { false }
     activated_at { "2019-10-29 00:37:09" }

@@ -28,6 +28,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -51,6 +52,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
+  gem 'guard-rspec'
 #  gem 'factory_girl_rails', :require => false
 end
 

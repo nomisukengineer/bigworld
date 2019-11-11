@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :category do
-    category_name { "MyString" }
+    category_name { "コート" }
   end
 end
+
+

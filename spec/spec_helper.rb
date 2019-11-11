@@ -43,6 +43,9 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
+  #書き足した
+  #https://qiita.com/kojiro3/items/b0957813695ca61fa3aa
+  config.include FactoryBot::Syntax::Methods
   
   require 'simplecov'
 
