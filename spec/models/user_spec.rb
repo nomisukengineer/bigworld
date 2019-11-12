@@ -634,15 +634,27 @@ RSpec.describe User, type: :model do
         end
     end
 
-    describe "あああ"
+    describe "渡されたトークンがnilの場合" do
         let!(:user) { create(:user, password: "nominomi1", remember_digest: nil) }
-        it "渡されたトークンがnilの場合、falseを返す[36]" do
-            remember_token = "token"
+        it "falseを返す[36]" do
+#            remember_token = "token"
             expect(user.authenticated?("token")).to eq (false)
         end
-        it "渡されたトークンがダイジェストが一致した場合、trueを返す[37]" do
-            expect(user.authenticated?)
+    end
+    describe "渡されたトークンとダイジェストが一致した場合" do
+        let!(:user) { create(:user, password: "nominomi1", remember_digest: User.digest("token")) }
+        it "trueを返す[37]" do
+            expect(user.authenticated?("token")).to eq (true)
         end
+    end
 
+    describe "ログイン情報が破棄された場合" do
+        let!(:user) { create(:user, password: "nominomi1", remember_digest: "token") }
+        it "remember_digestがnilにupdateされる[38]" do
+            expect(user.remember_digest).to eq ("token")
+            user.forget
+            expect(user.remember_digest).to eq (nil)
+        end
+    end
 end
 

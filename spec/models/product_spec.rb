@@ -34,6 +34,7 @@ RSpec.describe Product, type: :model do
       b=Product.get_size_ids(product.id)
       # binding.pry
       expect(a).to eq([size.id])
+      expect(b).to eq([size.id])
     end
   end
 

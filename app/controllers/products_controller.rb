@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :new, :create, :index, :destroy, :show, :mens, :ladies, :analytics]
 #  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: [:new, :edit, :update, :destroy, :analytics]
   before_action :orderd_product, only: :destroy
 
   def new

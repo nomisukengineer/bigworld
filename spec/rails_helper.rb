@@ -56,6 +56,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  # コントローラスペックで Devise のテストヘルパーを使用する
+  #config.include Devise::Test::ControllerHelpers, type: :controller
 end
 
 # /spec/rails_helper.rb  
@@ -87,4 +89,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
   # 以下略
+end
+
+def sign_in(user)
+  session[:user_id] = user.id
 end

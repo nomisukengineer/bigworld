@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update, :show]
   protect_from_forgery
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
   
   def new
@@ -95,18 +95,6 @@ class UsersController < ApplicationController
     redirect_to "/users/#{@user.id}/favorites"
   end
 
-  def thankyou1
-    Order.transaction(isolation: :read_committed) do
-      order1 = Order.new({user_id:1, ware_id:1, order_count:1})
-      order1.save!
-      order2 = Order.new({ ware_id:2, order_count:1})
-      order2.save!
-    end
-      render plain:'保存に成功しました。'
-    rescue => e
-      render plain: e.message
-    end
-
   def thankyou
     input_user = User.find_by(creditcard: params[:creditcard])
 
@@ -120,17 +108,22 @@ class UsersController < ApplicationController
 
       #id = Ware.where("product_id = #{@product.id} and size_id = 1").ids[0]
       #@ware=Ware.find(id)
-      ActiveRecord::Base.transaction(requires_new: true) do
-        
+      begin
+        ActiveRecord::Base.transaction(requires_new: true) do
+          
           @ware_ids.each do |ware_id|
             @order = Order.create!(user_id: @user.id, ware_id: ware_id, order_count: 1)
             Ware.find(ware_id).update(:amount => Ware.find(ware_id).amount -=1)
             Cart.find_by("user_id = #{@order.user_id} and ware_id = #{@order.ware_id}").destroy
           end
           redirect_to "/users/#{@user.id}/orders_history"
-        rescue => e
-          raise ActiveRecord::Rollback
+
+      rescue => e
+          ActiveRecord::Rollback
+          flash[:danger] = 'there are no stock'
+          redirect_to "/users/#{@user.id}/carts"
         end
+      end
     end
   end
 

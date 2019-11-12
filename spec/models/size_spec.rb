@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Size, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "複数のwaresを持つこと[149]" do
+    it {is_expected.to have_many(:wares)}
+  end
 end
 

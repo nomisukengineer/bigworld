@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
-    belongs_to :ware, optional: true
-    belongs_to :user, optional: true
+    belongs_to :ware
+    belongs_to :user
 
 =begin
     def self.get_ware_ids(product_id)
