@@ -2,7 +2,8 @@ FactoryBot.define do
   factory :user do
     name { "MyString" }
     email { "nominomi@gmail.com" }
-    password_digest { "MyString" }
+    password { "nominomi1" }
+    password_confirmation { "nominomi1" }
     birthday { "2019-10-29" }
     creditcard { 123455678 }
     creditpass { 123 }

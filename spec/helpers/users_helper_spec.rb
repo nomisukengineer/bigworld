@@ -11,5 +11,13 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include UsersHelper
+    describe "gravatar_for(user)" do
+      before do
+        @user = FactoryBot.create(:user, id: "1")
+      end
+      it "gravatarが発行される" do
+        expect(gravatar_for(@user)).to eq "<img alt=\"MyString\" class=\"gravatar\" src=\"https://secure.gravatar.com/avatar/#{Digest::MD5::hexdigest(@user.email.downcase)}\" />"
+      end
+    end
 end

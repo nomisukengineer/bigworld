@@ -47,10 +47,9 @@ class UsersController < ApplicationController
   def create_carts
     @user = User.find(session[:user_id])
     @product = Product.find(params[:product_id])
-    @size_id = Size.find(params[:size_id])
-    #debugger
-    # @ware = Ware.where("product_id = #{@product.id} and size_id = 1")
-    id = Ware.where("product_id = #{@product.id} and size_id = #{@size_id.id}").ids[0]
+    @size = Size.find(params[:size_id])
+    id = Ware.where("product_id = #{@product.id} and size_id = #{@size.id}").ids[0]
+    # debugger
     @ware=Ware.find(id)
     Cart.create!(user_id: @user.id, ware_id: @ware.id, cart_count: 1)
     redirect_to "/users/#{@user.id}/carts"
@@ -96,15 +95,15 @@ class UsersController < ApplicationController
   end
 
   def thankyou
+    @user = User.find(session[:user_id])
     input_user = User.find_by(creditcard: params[:creditcard])
 
     if input_user.creditpass != params[:user][:creditpass]
-      redirect_back
+      redirect_to "/users/#{@user.id}/orders"
     else
       # ユーザーログイン後にホームのページにリダイレクトする
-      @user = User.find(session[:user_id])
       @ware_ids = @user.carts.pluck("ware_id")
-      #debugger
+      # debugger
 
       #id = Ware.where("product_id = #{@product.id} and size_id = 1").ids[0]
       #@ware=Ware.find(id)
@@ -147,10 +146,10 @@ class UsersController < ApplicationController
       end
     end
 
-    # 管理者かどうか確認
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+    # # 管理者かどうか確認
+    # def admin_user
+    #   redirect_to(root_url) unless current_user.admin?
+    # end
     
     # 正しいユーザーかどうか確認
     def correct_user

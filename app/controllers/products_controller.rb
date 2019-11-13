@@ -35,8 +35,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.paginate(page: params[:page]).search(params[:search])
-    @mens = Gender.find(1)
-    @ladies = Gender.find(2)
   end
 
   def mens
@@ -66,14 +64,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def add_ware
-
-  end
-
   def ware_new
     @product = Product.find(params[:product_id])
     @size = Size.find(params[:size_id])
-
+    # debugger
     @ware = Ware.new
   end
 

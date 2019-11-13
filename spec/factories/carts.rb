@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :cart do
 #    references { "" }
 #    references { "" }
-    carts_count { 5 }
+    cart_count { 1 }
     user
     ware
   end
