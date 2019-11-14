@@ -30,10 +30,10 @@ module SessionsHelper
         end
     end
 
-    def admin?
-        current_user.admin?
-        return false if nil
-    end
+    # def admin?
+    #     current_user.admin?
+    #     return false if nil
+    # end
 
     # ユーザーがログインしていればtrue、その他ならfalseを返す
     def logged_in?
@@ -66,8 +66,8 @@ module SessionsHelper
         session[:forwarding_url] = request.original_url if request.get?
     end
 
-    # 管理者かどうか確認
-    def admin_user
-        redirect_to(root_url) unless current_user.admin?
-    end
+    # # 管理者かどうか確認
+    # def admin_user
+    #     redirect_to(root_url) unless current_user.admin?
+    # end
 end

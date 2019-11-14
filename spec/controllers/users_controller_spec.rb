@@ -239,10 +239,17 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to "/users/#{@user.id}/carts"
       end
     end
-    context 'ゲストユーザーの場合' do
-      it 'ゲストユーザーならば、302レスポンスが返ってくること' do
+    context 'ゲストユーザーである場合' do
+      before do
+        fake_id = 1
+        get :carts, params: { 'id' => fake_id }, session: {}
       end
-      it 'ゲストユーザーならば、ログインページにリダイレクトすること'
+      it 'ゲストユーザーならば、302レスポンスが返ってくること' do
+        expect(response).to have_http_status(302)
+      end
+      it 'ゲストユーザーならば、ログインページにリダイレクトすること' do
+        expect(response).to redirect_to "/login"
+      end
     end
   end
 
@@ -274,7 +281,9 @@ RSpec.describe UsersController, type: :controller do
       it 'ゲストユーザーならば、302レスポンスが返ってくること' do
         expect(response).to have_http_status(302)
       end
-      it 'ゲストユーザーならば、ログインページにリダイレクトすること'
+      it 'ゲストユーザーならば、ログインページにリダイレクトすること' do
+        expect(response).to redirect_to "/users/1/carts"
+      end
     end
   end
 
@@ -485,7 +494,6 @@ end
         params: { id: @user2.id, creditcard: @user2.creditcard, user: { creditpass: @user2.creditpass } },
         session: { user_id: @user2.id }
       end
-      it '全ての処理が実行中止になること'
       it '買い物カゴ一覧画面に遷移すること' do
         # ActiveRecord::Base.connection.expect(:rollback_db_transaction).once
         expect(response).to redirect_to "/users/#{@user2.id}/carts"

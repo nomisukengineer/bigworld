@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :new, :create, :index, :destroy, :show, :mens, :ladies, :analytics]
 #  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:new, :edit, :update, :destroy, :analytics]
+  before_action :admin_user,     only: [:new, :create, :edit, :update, :destroy, :analytics, :ware_new, :ware_create, :ware_edit ,:ware_update]
   before_action :orderd_product, only: :destroy
 
   def new
@@ -50,15 +50,15 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def destroy
-    @product_id = Product.find(params[:product_id]).id
-    @size_id = Size.find(params[:size_id]).i
-    #debugger
-    #product = Product.find(id)
-    id = Ware.where("product_id = #{@product_id} and size_id = #{@size_id}").ids[0]
-    Ware.find(id).update(:amount => 0)
-    redirect_to root_path
-  end
+  # def destroy
+  #   @product_id = Product.find(params[:product_id]).id
+  #   @size_id = Size.find(params[:size_id]).i
+  #   #debugger
+  #   #product = Product.find(id)
+  #   id = Ware.where("product_id = #{@product_id} and size_id = #{@size_id}").ids[0]
+  #   Ware.find(id).update(:amount => 0)
+  #   redirect_to root_path
+  # end
 
   def edit
     @product = Product.find(params[:id])
@@ -111,11 +111,16 @@ class ProductsController < ApplicationController
 #             )
 #    end
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-                                  :password_confirmation,
-                                  :birthday, :postcode, :address,
-                                  :creditcard, :creditpass)
+    # def user_params
+    #   params.require(:user).permit(:name, :email, :password,
+    #                               :password_confirmation,
+    #                               :birthday, :postcode, :address,
+    #                               :creditcard, :creditpass)
+    # end
+
+    def product_params
+      params.require(:product).permit(:product_name, :gender_id, :category_id,
+                                  :price)
     end
 
         # beforeフィルター
@@ -134,13 +139,11 @@ class ProductsController < ApplicationController
         redirect_to(root_url) unless current_user.admin?
       end
       
-      # 正しいユーザーかどうか確認
-      def correct_user
-        @user = User.find(session[:id])
-        redirect_to(root_url) unless current_user?(@user)
-      end
-    
-      def orderd_product
-      end
+      # # 正しいユーザーかどうか確認
+      # def correct_user
+      #   @user = User.find(session[:id])
+      #   redirect_to(root_url) unless current_user?(@user)
+      # end
+
 
 end

@@ -11,16 +11,16 @@ RSpec.describe "UsersLogins", type: :request do
   end
 
 
-  describe "フラッシュメッセージ" do
-    it "login with invalid information" do
-      get login_path
-      assert_template 'sessions/new'
-      post login_path, params: { session: { email: "", password: "" } }
-      assert_template 'sessions/new'
-      expect(flash.empty?).to_not eq true
-      get root_path
-      assert flash.empty?
-    end
-  end
+  # describe "フラッシュメッセージ" do
+  #   it "login with invalid information" do
+  #     get login_path
+  #     assert_template 'sessions/new'
+  #     post login_path, params: { session: { email: "", password: "" } }
+  #     assert_template 'sessions/new'
+  #     expect(flash.empty?).to_not eq true
+  #     get root_path
+  #     assert flash.empty?
+  #   end
+  # end
 end
 
